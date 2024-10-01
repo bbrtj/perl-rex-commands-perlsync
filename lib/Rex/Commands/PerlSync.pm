@@ -347,16 +347,16 @@ sub _get_remote_files
 sub _diff_files
 {
 	my ($files1, $files2) = @_;
+	my %checksums;
 	my @diff;
 
-	for my $file1 (@{$files1}) {
-		my @data = grep {
-			($_->{name} eq $file1->{name})
-				&& ($_->{md5} eq $file1->{md5})
-		} @{$files2};
-		if (scalar @data == 0) {
-			push(@diff, $file1);
-		}
+	for my $file (@{$files2}) {
+		$checksums{$file->{name}} = $file->{md5};
+	}
+
+	for my $file (@{$files1}) {
+		push @diff, $file
+			if !$checksums{$file->{name}} || $checksums{$file->{name}} ne $file->{md5};
 	}
 
 	return @diff;
