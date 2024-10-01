@@ -364,10 +364,6 @@ sub _diff_files
 
 1;
 
-#
-# (c) Jan Gehring <jan.gehring@gmail.com>
-#
-
 =head1 NAME
 
 Rex::Commands::PerlSync - Sync directories, better
@@ -423,13 +419,11 @@ to exclude files or entire directories.
    sync_down "/remote/directory", "/local/directory";
  };
 
-=head1 SEE ALSO
-
-L<Some::Module>
-
 =head1 AUTHOR
 
-Bartosz Jarzyna E<lt>bbrtj.pro@gmail.comE<gt>
+Original code from L<Rex> - see authors.
+
+Modified by Bartosz Jarzyna E<lt>bbrtj.pro@gmail.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

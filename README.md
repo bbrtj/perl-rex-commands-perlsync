@@ -1,5 +1,5 @@
 # Rex::Commands::PerlSync
-A Perl module for blah blah blah
+A Rex command for syncing directories.
 
 ## Code and documentation
 [Rex::Commands::PerlSync on CPAN](https://metacpan.org/release/Rex-Commands-PerlSync)
@@ -15,5 +15,4 @@ bigger so we can talk it through.
 
 ### Author
 Bartosz Jarzyna <bbrtj.pro@gmail.com>
-
 
