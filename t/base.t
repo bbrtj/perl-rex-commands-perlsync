@@ -129,7 +129,14 @@ sub compare_contents
 		$target
 	);
 
-	is(\@result, bag { item $_ for @expected }, 'synced dir matches');
+	is(
+		\@result,
+		bag {
+			item $_ for @expected;
+			end;
+		},
+		'synced dir matches'
+	);
 }
 
 done_testing;
