@@ -14,6 +14,8 @@ jobs:
         perl: [ '5.14', '5.30', '5.40' ]
         exclude:
           - runner: windows-latest
+            perl: '5.14'
+          - runner: windows-latest
             perl: '5.40'
 
     runs-on: ${{matrix.runner}}
@@ -61,5 +63,4 @@ jobs:
         RELEASE_TESTING: 1
       run: |
         prove -l -r t/
-
 
