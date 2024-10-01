@@ -32,13 +32,13 @@ subtest 'should sync_up with excludes' => sub {
 	run_task(
 		sub {
 			sync_up $source, $target,
-				{exclude => ['dir/file2', 'file4', 'dir with spaces']};
+				{exclude => ['dir/file2', 'file4', 'dir2']};
 		}
 	);
 
 	compare_contents(
 		$source, $target,
-		['/dir/file2', '/dir with spaces', '/dir with spaces/file3']
+		['/dir/file2', '/dir2', '/dir2/file3']
 	);
 };
 
@@ -63,13 +63,13 @@ subtest 'should sync_down with excludes' => sub {
 	run_task(
 		sub {
 			sync_down $source, $target,
-				{exclude => ['dir/file2', 'file4', 'dir with spaces']};
+				{exclude => ['dir/file2', 'file4', 'dir2']};
 		}
 	);
 
 	compare_contents(
 		$source, $target,
-		['/dir/file2', '/dir with spaces', '/dir with spaces/file3']
+		['/dir/file2', '/dir2', '/dir2/file3']
 	);
 };
 
@@ -106,7 +106,7 @@ sub compare_contents
 	find(
 		{
 			wanted => sub {
-				s/$source//;
+				s/^\Q$source\E//;
 				return unless length;
 				return if $excluded_map{$_};
 				push @expected, $_;
@@ -120,7 +120,7 @@ sub compare_contents
 	find(
 		{
 			wanted => sub {
-				s/$target//;
+				s/^\Q$target\E//;
 				return unless length;
 				push @result, $_;
 			},
